@@ -1,0 +1,15 @@
+{
+  "name": "me-wallpaper-generator",
+  "version": "1.0.0",
+  "description": "Mass Effect Custom Wallpaper Generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fan made",
+  "license": "Electronic Arts",
+  "dependencies": {
+    "merge-images": "^2.0.0",
+    "plain-draggable": "^2.5.12"
+  }
+}

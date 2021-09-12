@@ -1,0 +1,910 @@
+<html>
+	<head>
+		<title>Mass Effect&#8482; - Custom 4K Wallpaper Art Creator - Legendary Edition</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<link href="favicon.png" rel="icon" type="image/png" />
+		<link href="fontello/css/fontello.css" rel="stylesheet" type="text/css" />
+		<link href="fontello/css/animation.css" rel="stylesheet" type="text/css" />
+
+		<script src="node_modules/merge-images/dist/index.umd.js"></script>
+		<script src="node_modules/plain-draggable/plain-draggable.min.js"></script>
+		
+		<style>
+
+			@font-face {
+				font-family: 'fontello';
+				src: url('fontello/font/fontello.eot'),
+					url('fontello/font/fontello.woff') format('woff'),
+					url('fontello/font/fontello.ttf') format('truetype'),
+					url('fontello/font/fontello.svg') format('svg');
+				font-weight: normal;
+				font-style: normal;
+			}
+			
+			body {
+				background: black;
+				font-family: arial;
+				font-size: 16px;
+				height: fit-content;
+				line-height: 20px;
+				margin: 0;
+			}
+			
+			button {
+				background: #c8010a;
+				border: none;
+				border-radius: 4px;
+				box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+				color: white;
+				cursor: pointer;
+				font-family: fantasy, arial;
+				font-size: 20px;
+				margin-top: 20px;
+				padding: 10px 20px;
+			}
+
+			button:hover {
+				background: #3b91c9;
+			}
+
+			button i {
+				font-size: 16px;
+				margin-right: 6px;
+				vertical-align: middle;
+			}
+
+			button span {
+				vertical-align: middle;
+			}
+			
+			h1 {
+				font-size: 24px;
+				line-height: 32px;
+				margin: 0 0 32px;
+			}
+			
+			html {
+				height: fit-content;
+			}
+			
+			video {
+				width: 100vw;
+			}
+			
+			.button_zone {
+				cursor: pointer;
+			}
+
+			.icon {
+				font-family: "fontello";
+			}
+			
+			.icon_main {
+				border: 1px solid white;
+				border-radius: 50px;
+				box-shadow: 0 0 8px 0px rgb(0, 0, 0, 0.4);
+				color: white;
+				cursor: pointer;
+				font-size: 24px;
+				height: 24px;
+				margin: 3px;
+				padding: 20px;
+				position: absolute;
+				right: 24px;
+			}
+
+			.icon_main:hover {
+				border-width: 4px;
+				margin: 0;
+			}
+
+			.icon_main::before {
+				margin: 0;
+			}
+			
+			.morality {
+				filter: drop-shadow(4px 4px 4px black);
+			}
+			
+			.replacements, #legal {
+				bottom: 0;
+				left: 0;
+				opacity: 0;
+				overflow: auto;
+				pointer-events: none;
+				position: fixed;
+				right: 0;
+				top: 0;
+				transition: opacity 300ms;
+			}
+			
+			.replacements {
+				background: rgba(255, 255, 255, 0.85);
+				padding: 24px;
+				text-align: center;
+			}
+
+			.replacements img {
+				border-radius: 10px;
+				cursor: pointer;
+				max-width: 32%;
+			}
+
+			#logos img:not(.selected):not(:hover) {
+				background: rgba(0, 0, 0, 0.8);
+			}
+
+			.replacements img:hover:not(.selected):not(.morality) {
+				background: #3b91c9;
+			}
+			
+			.selected {
+				background: #c8010a;
+			}
+			.selected.morality[data-value="1"], .morality[data-value="1"]:hover {
+				background: #3b91c9;
+			}
+			.selected.morality[data-value="2"], .morality[data-value="2"]:hover {
+				background: rgb(60,58,180);
+				background: linear-gradient(135deg, #3b91c9 48%, #c8010a 52%);
+			}
+			.selected.morality[data-value="3"], .morality[data-value="3"]:hover {
+				background: #c8010a;
+			}
+			
+			#button_location {
+				height: 16vw;
+				left: 23%;
+				top: 40vw;
+				width: 30%;
+			}
+
+			#button_logo {
+				height: 8.1vw;
+				left: 41.5%;
+				top: 20vw;
+				width: 17.5%;
+			}
+
+			#button_tier_1a {
+				height: 16vw;
+				left: 43%;
+				top: 4vw;
+				width: 16%;
+			}
+
+			#button_tier_1b {
+				height: 9vw;
+				left: 35%;
+				top: 10vw;
+				width: 8%;
+			}
+
+			#button_tier_2 {
+				height: 7vw;
+				left: 33%;
+				top: 18vw;
+				width: 7%;
+			}
+
+			#button_tier_3a {
+				height: 13vw;
+				left: 36%;
+				top: 24vw;
+				width: 6%;
+			}
+
+			#button_tier_3b {
+				height: 12vw;
+				left: 40.5%;
+				top: 27.5vw;
+				width: 7.5%;
+			}
+
+			#button_tier_3c {
+				height: 10vw;
+				left: 48%;
+				top: 28vw;
+				width: 6%;
+			}
+
+			#button_tier_4a {
+				height: 10vw;
+				left: 54%;
+				top: 33vw;
+				width: 6%;
+			}
+			
+			#button_tier_4b {
+				height: 9vw;
+				left: 31%;
+				top: 25vw;
+				width: 6.5%;
+			}
+
+			#characters_container {
+				margin: 0 auto;
+				max-width: 700px;
+			}
+
+			#characters_container.wider {
+				max-width: 1350px;
+			}
+			
+			#icon_download {
+				top: 114px;
+			}
+
+			#icon_github {
+				top: 326px;
+			}
+
+			#icon_morality {
+				height: 40px;
+				padding: 12px;
+				left: 24px;
+				top: 24px;
+			}
+
+			#icon_resize {
+				top: 24px;
+			}
+
+			#icon_shuffle {
+				left: 24px;
+				right: auto;
+				top: 114px;
+			}
+
+			#icon_trademark {
+				top: 236px;
+			}
+
+			#icon_trademark::before {
+				left: -2px;
+				position: relative;
+			}
+
+			#legal_content {
+				background: white;
+				border-radius: 6px;
+				box-sizing: border-box;
+				margin: 40px auto;
+				max-width: 800px;
+				padding: 20px;
+			}
+
+			#legal p {
+				margin: 16px 0; 
+			}
+
+			#legal p:first-child {
+				margin-top: 0;
+			}
+
+			#legal p:last-child {
+				margin-top: 0;
+			}
+			
+			#legendary {
+				color: #c8010a;
+			}
+			
+			#locations_container {
+				margin: 0 auto;
+				max-width: 1400px;
+			}
+
+			#morality {
+				background-size: cover;
+				height: calc(100vw / (3840/2160));
+				overflow: hidden;
+				position: relative;
+				width: 100%;
+			}
+
+			#morality > div {
+				background-size: cover;
+				height: 100%;
+				position: absolute;
+				transition: opacity 500ms;
+				width: 100%;
+			}
+
+			#morality > span {
+				border-radius: 20px;
+				display: block;
+				position: absolute;
+			}
+
+			#morality > span:hover, #morality > span.moving {
+				border: 1px solid rgba(255, 255, 255, 0.6);
+			}
+
+			#morality_video {
+				left: 0;
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				width: 100vw;
+			}
+
+			#morality_video, #morality_helmet {
+				left: 0;
+				position: absolute;
+				top: 0;
+				width: 100vw;
+			}
+
+			@media screen and (max-width: 1024px)
+			{
+				.icon_main {
+					font-size: 18px;
+					height: 18px;
+					padding: 10px;
+					right: 10px;
+				}
+
+				#container > span {
+					border-radius: 6px;
+				}
+				
+				#icon_download {
+					top: 56px;
+				}
+
+				#icon_github {
+					top: 148px;
+				}
+
+				#icon_morality {
+					height: 18px;
+					padding: 10px;
+					left: 10px;
+					top: 10px;
+				}
+				
+				#icon_resize {
+					top: 10px;
+				}
+
+				#icon_shuffle {
+					left: 10px;
+					top: 56px;
+				}
+
+				#icon_trademark {
+					top: 102px;
+				}
+
+				#legal_content {
+					max-width: 90%;
+				}
+			}
+
+		</style>
+		<script>
+			
+			var artRatio = 3840/2160,
+				characters = [
+					['ashley', true],
+					['edi', false],
+					['garrus', true],
+					['grunt', false],
+					['jacob', false],
+					['jack', true],
+					['javik', false],
+					['kaidan', false],
+					['kasumi', false],
+					['legion', true],
+					['liara', true],
+					['miranda', true],
+					['mordin', false],
+					['samara', false],
+					['tali', true],
+					['thane', true],
+					['urdnot', true],
+					['zaeed', false]
+				],
+				locations = ['citadel', 'collector-base', 'eden-prime', 'invaded', 'omega'],
+				// ordered by layer order
+				tiers = ['1a', '1b', '2', '4b', '3a', '4a', '3c', '3b'],
+				settings = {
+					'1a': 'garrus',
+					'1b': 'legion',
+					'2': 'miranda',
+					'3a': 'mordin',
+					'3b': 'jack',
+					'3c': 'thane',
+					'4a': 'urdnot',
+					'4b': 'tali',
+					location: 'citadel',
+					logo: 'me-le',
+					morality: '2'
+				},
+				offset = {};
+			
+			function assetUrlGet (type, hd) {
+				
+				var url = 'assets/' + (hd ? 'hd/' : '');
+				
+				switch (type) {
+
+					case 'location':
+						url += type + '-' + settings[type] + '-' + settings.morality + '.png';
+						break;
+
+					case 'logo':
+						url += type + '-' + settings[type] + '.png';
+						break;
+
+					case 'morality':
+						url +=  type + '-' + settings[type] + '.jpg';
+						break;
+
+					case 'morality-icon':
+					case 'ship':
+						url += type + '-' + settings.morality + '.png';
+						break;
+					
+					default:
+						url += settings[type] + '-' + type + '-' + settings.morality + '.png';
+						break;
+				}
+				
+				return url;
+			}
+			
+			function characterChoose (item) {
+				
+				var isTier1 = (item.indexOf('1') === 0),
+					elements = document.querySelectorAll('#characters img');
+
+				elements.forEach(function (element) {
+
+					element.style.display = (isTier1 && element.dataset.tier1 === undefined)
+						? 'none'
+						: 'inline';
+				})
+				
+				if (isTier1) {
+					document.getElementById('characters_container').classList.remove('wider');
+				}
+				else {
+					document.getElementById('characters_container').classList.add('wider');
+				}
+			}
+			
+			function charactersRandomize () {
+				
+				var selected = [];
+				
+				for (var i = 0; i < tiers.length; i++) {
+					
+					var potential = characters.filter(function (character) {
+						return (
+							((i < 3 && character[1]) || i >= 3)
+							&& !selected.includes(character[0])
+						)
+					});
+					
+					var chosen = potential[Math.floor(Math.random() * potential.length)][0];
+
+					selected.push(chosen);
+					settings[tiers[i]] = chosen;
+
+					settingApply(tiers[i], false, true);
+				}
+			}
+
+			var downloading = false;
+			function download () {
+
+				downloading = true;
+				
+				var classes = this.classList;
+
+				classes.remove('icon-download-alt');
+				classes.add('icon-spin6', 'animate-spin');
+				
+				var assets = [
+					assetUrlGet('morality', true),
+					assetUrlGet('location', true)
+				];
+				
+				tiers.forEach(function (tier) {
+
+					// need to compute the distance relatively for the 4K assets
+					var multiplier = 3840 / document.getElementById('morality').offsetWidth;
+					
+					var x = offset[tier] ? (offset[tier][0] * multiplier) : 0,
+						y = offset[tier] ? (offset[tier][1] * multiplier) : 0;
+					
+					assets.push({
+						src: assetUrlGet(tier, true),
+						x: x,
+						y: y
+					})
+				})
+
+				if (settings.logo !== 'none') {
+					// goes before the last character, who may be over it
+					assets.splice(9, 0, assetUrlGet('logo', true))
+				}
+
+				assets.push(assetUrlGet('ship', true));
+				
+				mergeImages(assets)
+					.then(function(b64) {
+
+						classes.add('icon-download-alt');
+						classes.remove('icon-spin6', 'animate-spin');
+						
+						var a = document.createElement("a");
+						a.href = b64;
+						a.download = "wallpaper.jpg";
+						a.click();
+
+						downloading = false;
+					});
+			}
+			
+			function regen () {
+
+				settingApply('morality', true);
+				settingApply('ship', true);
+				settingApply('location', true);
+				settingApply('logo', true);
+				tiers.forEach(function (tier) {
+					// a regen doesn't reset positions, so that a change of morality doesn't either
+					settingApply(tier, true, false);
+				})
+				
+				document.getElementById('icon_morality').src = assetUrlGet('morality-icon');
+				document.getElementById('morality_video').style.display = (settings.morality === '2') ? 'block' : 'none';
+			}
+
+			var settingItem = null;
+			
+			function settingApply(item, immediate, reposition) {
+				
+				var el = document.getElementById(item) || document.getElementById('tier_' + item)
+
+				if (immediate) {
+					settingApplyDo(item, el, reposition);
+				}
+				else {
+					setTimeout(function() {
+						el.style.opacity = 0;
+						setTimeout(function() {
+							
+							settingApplyDo(item, el, reposition);
+							
+							// a delay for loading time
+							setTimeout(function() {
+								el.style.opacity = 1;
+							}, 100);
+						}, 500);
+					}, 300);
+				}
+			}
+
+			function settingApplyDo(item, el, reposition) {
+
+				if (item === 'logo') {
+
+					if (settings.logo !== 'none') {
+						el.style.display = 'inline';
+						el.style.backgroundImage = 'url(' + assetUrlGet('logo') + ')';
+					}
+					else {
+						el.style.display = 'none';
+					}
+				}
+				else {
+					el.style.backgroundImage = 'url(' + assetUrlGet(item) + ')';
+				}
+				
+				if (tiers.includes(item) && reposition) {
+
+					// reset the offset
+					offset[item] = null;
+					el.style.transform = '';
+					document.getElementById('button_tier_' + item).style.transform = '';
+					el.plainDraggable.position();
+				}
+			}
+			
+			function settingChange (item) {
+
+				settingItem = item;
+				
+				var settingsType = null;
+				
+				if (item === 'location') {
+					settingsType = 'locations';
+				}
+				else if (item === 'logo') {
+					settingsType = 'logos';
+				}
+				else if (item === 'morality') {
+					settingsType = 'moralities';
+				}
+				else {
+					settingsType = 'characters';
+					characterChoose(item);
+				}
+
+				settingsToggle(settingsType, true)
+			}
+			
+			function settingSelect (value) {
+				
+				settings[settingItem] = value;
+				
+				settingsToggle();
+				
+				if (settingItem === 'morality') {
+					// redraw everything
+					regen();
+				}
+				else {
+					settingApply(settingItem, false, true);
+				}
+			}
+			
+			function settingsToggle (type, on) {
+				
+				if (on) {
+					
+					var container = document.getElementById(type);
+					
+					// show the choices
+					container.style.opacity = 1;
+					container.style.pointerEvents = 'all';
+
+					// highlight the selected choice
+					var elements = container.querySelectorAll('img');
+
+					elements.forEach(function (element) {
+
+						if (settings[settingItem] === element.dataset.value) {
+							element.classList.add('selected');
+						}
+						else {
+							element.classList.remove('selected');
+						}
+					})
+				}
+				else {
+					
+					// hide choices
+					var elements = document.querySelectorAll('.modal');
+					elements.forEach(function(el) {
+						el.style.opacity = 0;
+						el.style.pointerEvents = 'none';
+					})
+				}
+			}
+
+			function toggleFullScreen (clickEvent) {
+				
+				if (!document.fullscreenElement) {
+					document.documentElement.requestFullscreen();
+				}
+				else {
+					if (document.exitFullscreen) {
+						document.exitFullscreen();
+					}
+				}
+
+				clickEvent.stopPropagation();
+			}
+			
+			window.onload = function () {
+
+				characters.forEach(function (character) {
+					
+					var img = document.createElement('img');
+					
+					img.src = 'assets/' + character[0] + '.png';
+					img.dataset.value = character[0];
+					
+					if (character[1]) {
+						img.dataset.tier1 = true;
+					}
+					
+					document.getElementById('characters_list').appendChild(img)
+				})
+				
+				// listeners for clicks on editable items
+				var elements = document.querySelectorAll('[data-target]'),
+					lastDrag = null;
+
+				elements.forEach(function (element) {
+					
+					var listener = function (event) {
+						
+						var that = this;
+						
+						// this must be executed after PlainDraggable's listeners have done their job
+						setTimeout(function () {
+							if (!lastDrag || lastDrag < Date.now() - 30) {
+								settingChange(that.dataset.target);
+							}
+						}, 1)
+					};
+					
+					element.addEventListener('click', listener);
+					// the buttons for characters won't get a click event because of the draggable
+					// system, we must listen to touchend instead
+					element.addEventListener('touchend', listener);
+				})
+
+				// draggable characters
+				tiers.forEach(function (tier) {
+					
+					var character = document.getElementById('tier_' + tier),
+						characterButton = document.getElementById('button_tier_' + tier),
+						isMoving = false,
+						width = document.getElementById('morality').offsetWidth,
+						allowedOffset = width / artRatio;
+					
+					var draggable = new PlainDraggable(character, {
+						containment: {left: '-5%', top: '-7%', width: '110%', height: '114%' },
+						handle: characterButton,
+						onDragEnd: function (pos) {
+							if (isMoving) {
+								
+								isMoving = false;
+								lastDrag = Date.now();
+
+								offset[tier] = [pos.left, pos.top];
+							}
+							
+							characterButton.classList.remove('moving');
+						},
+						onDragStart: function (pos) {
+							characterButton.classList.add('moving');
+						},
+						onMove: function (pos) {
+							
+							isMoving = true;
+
+							characterButton.style.transform = 'translate(' + pos.left + 'px, ' + pos.top + 'px)'
+						},
+						zIndex: false
+					});
+
+					character.plainDraggable = draggable;
+				})
+
+				// listeners for clicks on substitute proposals
+				var elements = document.querySelectorAll('.replacements [data-value]');
+
+				elements.forEach(function (element) {
+					element.addEventListener('click', function () {
+						settingSelect(this.dataset.value);
+					});
+				})
+
+				var elements = document.querySelectorAll('[data-close]'),
+					close = function () {
+						settingsToggle(null, false)
+					};
+
+				elements.forEach(function (element) {
+					element.addEventListener('click', close);
+				})
+				document.addEventListener('keyup', function(e) {
+					if (e.key === "Escape") {
+						close();
+					}
+				});
+				
+				document.getElementById('icon_shuffle').addEventListener('click', charactersRandomize);
+				document.getElementById('icon_resize').addEventListener('click', toggleFullScreen);
+				document.getElementById('icon_download').addEventListener('click', download);
+				document.getElementById('icon_trademark').addEventListener('click', function () {
+					document.getElementById('legal').style.opacity = 1;
+					document.getElementById('legal').style.pointerEvents = 'all';
+				});
+				
+				regen();
+			}
+			
+		</script>
+	</head>
+	<body>
+		<div id="morality">
+			<div  id="morality_video">
+				<video autoplay loop muted>
+					<source src="assets/morality-2.mp4" type="video/mp4">
+				</video>
+				<img id="morality_helmet" src="assets/morality-2-helmet.png">
+			</div>
+			<div id="location"></div>
+			<div id="tier_1a"></div>
+			<div id="tier_1b"></div>
+			<div id="tier_2"></div>
+			<div id="tier_4b"></div>
+			<div id="tier_3a"></div>
+			<div id="tier_4a"></div>
+			<div id="tier_3c"></div>
+			<div id="logo"></div>
+			<div id="tier_3b"></div>
+			<div id="ship"></div>
+			<span id="button_location" class="button_zone" data-target="location"></span>
+			<span id="button_tier_1a" data-target="1a"></span>
+			<span id="button_tier_1b" data-target="1b"></span>
+			<span id="button_tier_2" data-target="2"></span>
+			<span id="button_tier_4b" data-target="4b"></span>
+			<span id="button_tier_3a" data-target="3a"></span>
+			<span id="button_tier_4a" data-target="4a"></span>
+			<span id="button_tier_3c" data-target="3c"></span>
+			<span id="button_logo" class="button_zone" data-target="logo"></span>
+			<span id="button_tier_3b" data-target="3b"></span>
+			<img id="icon_morality" class="icon_main" data-target="morality" />
+			<i id="icon_shuffle" class="icon icon_main icon-shuffle"></i>
+			<i id="icon_resize" class="icon icon_main icon-resize-full"></i>
+			<i id="icon_download" class="icon icon_main icon-download-alt"></i>
+			<i id="icon_trademark" class="icon icon_main icon-trademark"></i>
+			<a href="https://github.com/louisameline/mass-effect-custom-wallpaper-art-creator" target="_blank"><i id="icon_github" class="icon icon_main icon-github-circled"></i></a>
+		</div>
+		<div id="characters" class="replacements modal">
+			<div id="characters_container">
+				<span id="characters_list"></span><br />
+				<button data-close><i class="icon icon-cancel"></i><span>CLOSE</span></button>
+			</div>
+		</div>
+		<div id="locations" class="replacements modal">
+			<div id="locations_container">
+				<img src="assets/location-citadel.png" data-value="citadel" />
+				<img src="assets/location-collector-base.png" data-value="collector-base" />
+				<img src="assets/location-eden-prime.png" data-value="eden-prime" />
+				<img src="assets/location-invaded.png" data-value="invaded" />
+				<img src="assets/location-omega.png" data-value="omega" />
+				<br />
+				<button data-close><i class="icon icon-cancel"></i><span>CLOSE</span></button>
+			</div>
+		</div>
+		<div id="moralities" class="replacements modal">
+			<img src="assets/morality-1.png" class="morality" data-value="1" />
+			<img src="assets/morality-2.png" class="morality" data-value="2" />
+			<img src="assets/morality-3.png" class="morality" data-value="3" />
+			<br />
+			<button data-close><i class="icon icon-cancel"></i><span>CLOSE</span></button>
+		</div>
+		<div id="logos" class="replacements modal">
+			<img src="assets/logo-me-thumb.png" data-value="me" />
+			<img src="assets/logo-me-le-thumb.png" data-value="me-le" />
+			<img src="assets/logo-none.png" data-value="none" />
+			<br />
+			<button data-close><i class="icon icon-cancel"></i><span>CLOSE</span></button>
+		</div>
+		<div id="legal" class="modal">
+			<div id="legal_content">
+				<p>
+					<h1>Mass Effect Custom 4K Wallpaper Art Creator: <span id="legendary">Legendary Edition</span></h1>
+				</p>
+				<p>
+					Mass Effect is a trademark of ELECTRONIC ARTS INC.<br />
+					Visual assets used in this generator are the sole property of ELECTRONIC ARTS INC.
+				</p>
+				<p>This page is fan-made and is not managed by ELECTRONIC ARTS INC.</p>
+				<p>
+					For more info on Mass Effect, visit the official website at <a href="https://www.ea.com/fr-fr/games/mass-effect" target="_blank">https://www.ea.com/fr-fr/games/mass-effect</a>.<br />
+					This tool is a derivative of the official Custom Art Creator, and as such is offered to you conditioned upon your acceptance of EA’s <a href="https://tos.ea.com/legalapp/WEBTERMS/US/en/PC/">User Agreement</a>.
+				</p>
+				<p>
+					To use this tool, you must agree that Mass Effect is the best videogame you have ever played, and is likely to remain as such for the rest of your life. You certify that you have laughed, cried, yelled, fallen in love at least once with a character, preferably Miranda or Garrus.
+				</p>
+				<p>
+					This page was made by Louis, a fan who loved the original Custom Art Creator so much that he had to recreate it to make it even more handy and powerful. The code he created to make this possible is shared on <a href="https://github.com/louisameline/mass-effect-custom-wallpaper-art-creator" target="_blank">Github</a> for others to help make it even better.
+				</p>
+				<button data-close><i class="icon icon-cancel"></i><span>CLOSE</span></button>
+			</div>
+		</div>
+	</body>
+</html>
