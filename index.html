@@ -128,7 +128,9 @@
 			.replacements img {
 				border-radius: 10px;
 				cursor: pointer;
-				max-width: 32%;
+			}
+			#characters_container.wider img {
+				max-width: 184px;
 			}
 
 			#logos img:not(.selected):not(:hover) {
@@ -229,7 +231,7 @@
 			}
 
 			#characters_container.wider {
-				max-width: 1350px;
+				max-width: 1300px;
 			}
 			
 			#icon_download {
@@ -336,9 +338,20 @@
 				top: 0;
 				width: 100vw;
 			}
+			
+			@media screen and (max-width: 1280px) {
+				
+				#characters_container.wider img {
+					max-width: 170px;
+				}
+			}
 
-			@media screen and (max-width: 1024px)
-			{
+			@media screen and (max-width: 1024px) {
+				
+				.replacements img, #characters_container.wider img {
+					max-width: 32%;
+				}
+				
 				.icon_main {
 					font-size: 18px;
 					height: 18px;
@@ -394,6 +407,7 @@
 					['grunt', false],
 					['jacob', false],
 					['jack', true],
+					['james', false],
 					['javik', false],
 					['kaidan', false],
 					['kasumi', false],
