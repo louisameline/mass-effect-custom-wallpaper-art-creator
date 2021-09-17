@@ -1,0 +1,88 @@
+{
+  "_args": [
+    [
+      "merge-images@2.0.0",
+      "C:\\Users\\Evan\\Desktop\\me-wallpaper-generator"
+    ]
+  ],
+  "_from": "merge-images@2.0.0",
+  "_id": "merge-images@2.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-bpI4j54n/Zl6ZTgxaR3xWou/lqI53RAAt8peXijW37BKqoON83LQ7XCZqtFiwzBfEXIws1isYyR06584yffAyA==",
+  "_location": "/merge-images",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "merge-images@2.0.0",
+    "name": "merge-images",
+    "escapedName": "merge-images",
+    "rawSpec": "2.0.0",
+    "saveSpec": null,
+    "fetchSpec": "2.0.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/merge-images/-/merge-images-2.0.0.tgz",
+  "_spec": "2.0.0",
+  "_where": "C:\\Users\\Evan\\Desktop\\me-wallpaper-generator",
+  "author": {
+    "name": "Luke Childs",
+    "email": "lukechilds123@gmail.com",
+    "url": "http://lukechilds.co.uk"
+  },
+  "bugs": {
+    "url": "https://github.com/lukechilds/merge-images/issues"
+  },
+  "dependencies": {},
+  "description": "Easily compose images together without messing around with canvas",
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "camelcase": "^5.0.0",
+    "canvas": "^2.6.1",
+    "coveralls": "^3.0.0",
+    "datauri": "^1.0.5",
+    "eslint-config-xo-lukechilds": "^1.0.0",
+    "nyc": "^11.0.2",
+    "pify": "^3.0.0",
+    "rollup": "^0.59.0",
+    "rollup-plugin-buble": "^0.19.2",
+    "xo": "^0.18.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/lukechilds/merge-images",
+  "keywords": [
+    "compose",
+    "merge",
+    "images",
+    "without",
+    "no",
+    "canvas"
+  ],
+  "license": "MIT",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es2015.js",
+  "name": "merge-images",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukechilds/merge-images.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "xo",
+    "prebuild": "rm -rf dist",
+    "prelint": "npm run build",
+    "prepublish": "npm run build",
+    "pretest": "npm run build",
+    "test": "nyc ava"
+  },
+  "version": "2.0.0",
+  "xo": {
+    "env": "browser",
+    "extends": "xo-lukechilds"
+  }
+}
